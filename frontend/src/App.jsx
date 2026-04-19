@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
+import MainLayout from './Layout/MainLayout'
 
 function App() {
 
@@ -6,7 +7,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<h1>Hello</h1>}></Route>
+          <Route path='/' element={<MainLayout></MainLayout>}></Route>
         </Routes>
       </BrowserRouter>
     </>
