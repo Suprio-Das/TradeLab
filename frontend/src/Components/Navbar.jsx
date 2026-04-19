@@ -5,7 +5,9 @@ const Navbar = () => {
         <div>
             <div className="navbar px-0">
                 <div className="flex-1">
-                    <a className='text-2xl font-bold'>TradeLab</a>
+                    <a className='text-2xl font-bold flex items-center gap-2'>
+                        <img src="../../public/favicon.svg" alt="Favicon" className='w-10' /> TradeLab
+                    </a>
                 </div>
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
