@@ -12,7 +12,7 @@ const Navbar = () => {
                 <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
                         <li>
-                            <a className="cursor-pointer hover:bg-transparent focus:bg-transparent active:bg-transparent">
+                            <a href='/login' className="cursor-pointer hover:bg-transparent focus:bg-transparent active:bg-transparent">
                                 Login
                             </a>
                         </li>
