@@ -17,7 +17,7 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li>
-                            <a className='bg-blue-500 text-white font-bold'>Signup</a>
+                            <a href='/signup' className='bg-blue-500 text-white font-bold'>Signup</a>
                         </li>
                     </ul>
                 </div>
