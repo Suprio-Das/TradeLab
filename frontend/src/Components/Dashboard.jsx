@@ -25,10 +25,14 @@ const Dashboard = () => {
         <div className="min-h-screen bg-gray-900 text-white p-4">
             <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[90vh]">
 
-                <div className="bg-gray-800">A</div>
-                <div className="bg-gray-800">B</div>
-                <div className="bg-gray-800">C</div>
-                <div className="bg-gray-800">D</div>
+                {/* Chart */}
+                <div className="col-span-3 bg-gray-800">Chart</div>
+
+                {/* Right panel */}
+                <div className="col-span-1 bg-gray-700">Right Panel</div>
+
+                {/* Trade history */}
+                <div className="col-span-4 bg-gray-800">Trade History</div>
 
             </div>
         </div>
