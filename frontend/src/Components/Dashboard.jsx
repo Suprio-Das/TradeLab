@@ -26,19 +26,27 @@ const Dashboard = () => {
             <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[90vh]">
 
                 {/* Chart */}
-                <div className="col-span-3 bg-gray-800">Chart</div>
+                <div className="col-span-3 border border-gray-500 flex items-center justify-center">
+                    Candlestick Chart
+                </div>
 
                 {/* Right panel */}
                 <div className="col-span-1 flex flex-col gap-4">
 
-                    <div className="bg-gray-700 flex-1">Portfolio</div>
+                    <div className="border border-gray-500 p-3">
+                        Portfolio
+                    </div>
 
-                    <div className="bg-gray-700 flex-1">Trade Panel</div>
+                    <div className="border border-gray-500 p-3">
+                        Trade Panel
+                    </div>
 
                 </div>
 
                 {/* Trade history */}
-                <div className="col-span-4 bg-gray-800">Trade History</div>
+                <div className="col-span-4 border border-gray-500 p-3">
+                    Trade History
+                </div>
 
             </div>
         </div>
