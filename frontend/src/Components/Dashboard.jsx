@@ -29,7 +29,13 @@ const Dashboard = () => {
                 <div className="col-span-3 bg-gray-800">Chart</div>
 
                 {/* Right panel */}
-                <div className="col-span-1 bg-gray-700">Right Panel</div>
+                <div className="col-span-1 flex flex-col gap-4">
+
+                    <div className="bg-gray-700 flex-1">Portfolio</div>
+
+                    <div className="bg-gray-700 flex-1">Trade Panel</div>
+
+                </div>
 
                 {/* Trade history */}
                 <div className="col-span-4 bg-gray-800">Trade History</div>
