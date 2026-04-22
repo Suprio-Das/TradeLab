@@ -1,12 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AuthContext from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    const [error, setError] = useState({});
+    const navigate = useNavigate();
     const { handleSignUpWithEmailAndPassword } = useContext(AuthContext);
 
     const handleSignup = (e) => {
         e.preventDefault();
-        console.log("HandleSignup function")
+        const form = e.target;
+        const name = form.username.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log({ name, email, password })
+        handleSignUpWithEmailAndPassword(email, password)
+            .then((user) => {
+                if (user) {
+                    console.log(user)
+                    navigate('/');
+                    setError();
+                }
+            })
+            .catch((error) => {
+                setError(error.message);
+            })
     }
     return (
         <div className="flex items-center justify-center min-h-[calc(100vh-60px)]">
@@ -31,6 +49,7 @@ const Signup = () => {
                                 type="text"
                                 placeholder="Your name"
                                 className="input input-bordered w-full"
+                                name='username'
                             />
                         </div>
 
@@ -43,6 +62,7 @@ const Signup = () => {
                                 type="email"
                                 placeholder="your@email.com"
                                 className="input input-bordered w-full"
+                                name='email'
                             />
                         </div>
 
@@ -55,6 +75,7 @@ const Signup = () => {
                                 type="password"
                                 placeholder="********"
                                 className="input input-bordered w-full"
+                                name='password'
                             />
                         </div>
 
