@@ -1,6 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log({ email, password })
+    }
     return (
         <div className="flex items-center justify-center min-h-[calc(100vh-60px)]">
             <div className="card w-full max-w-sm shadow-lg bg-base-100">
@@ -14,7 +23,7 @@ const Login = () => {
                         </span>
                     </h1>
 
-                    <form className="space-y-3">
+                    <form className="space-y-3" onSubmit={handleLogin}>
                         {/* Email */}
                         <div>
                             <label className="label">
@@ -24,6 +33,7 @@ const Login = () => {
                                 type="email"
                                 placeholder="your@email.com"
                                 className="input input-bordered w-full"
+                                name='email'
                             />
                         </div>
 
@@ -36,6 +46,7 @@ const Login = () => {
                                 type="password"
                                 placeholder="********"
                                 className="input input-bordered w-full"
+                                name='password'
                             />
                         </div>
 
