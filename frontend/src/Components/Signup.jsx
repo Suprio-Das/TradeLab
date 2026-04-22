@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AuthContext from '../Context/AuthContext';
 
 const Signup = () => {
+    const { handleSignUpWithEmailAndPassword } = useContext(AuthContext);
+
+    const handleSignup = (e) => {
+        e.preventDefault();
+        console.log("HandleSignup function")
+    }
     return (
         <div className="flex items-center justify-center min-h-[calc(100vh-60px)]">
             <div className="card w-full max-w-sm shadow-lg bg-base-100">
@@ -14,7 +21,7 @@ const Signup = () => {
                         </span>
                     </h1>
 
-                    <form className="space-y-3">
+                    <form className="space-y-3" onSubmit={handleSignup}>
                         {/* Name */}
                         <div>
                             <label className="label">
