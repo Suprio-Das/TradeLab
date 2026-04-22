@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../Context/AuthContext';
 
 const Login = () => {
     const navigate = useNavigate();
+    const { handleEmailPasswordLogin } = useContext(AuthContext);
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({ email, password })
+
+        handleEmailPasswordLogin(email, password)
+            .then((user) => {
+                if (user) {
+                    navigate('/');
+                    console.log(user)
+                }
+            })
+            .catch((error) => {
+                alert(error.message);
+            })
     }
     return (
         <div className="flex items-center justify-center min-h-[calc(100vh-60px)]">

@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const handleEmailPasswordLogin = (email, password) => {
-        return signInWithEmailAndPassword(email, password);
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     // Auth Observer
