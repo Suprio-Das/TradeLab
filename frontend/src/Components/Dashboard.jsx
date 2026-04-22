@@ -26,26 +26,69 @@ const Dashboard = () => {
             <div className="grid grid-cols-4 grid-rows-2 gap-4 h-[90vh]">
 
                 {/* Chart */}
-                <div className="col-span-3 border border-gray-500 flex items-center justify-center">
-                    Candlestick Chart
+                <div className="col-span-3 border border-gray-500 flex flex-col p-3">
+                    <h2 className="text-sm text-gray-400 mb-2">Chart</h2>
+                    <div className="flex-1 flex items-center justify-center text-gray-500">
+                        Candlestick Chart Area
+                    </div>
                 </div>
 
                 {/* Right panel */}
                 <div className="col-span-1 flex flex-col gap-4">
 
+                    {/* Portfolio */}
                     <div className="border border-gray-500 p-3">
-                        Portfolio
+                        <h2 className="text-sm text-gray-400 mb-2">Portfolio</h2>
+                        <p>Balance: $0</p>
+                        <p>Position: 0</p>
+                        <p>P&amp;L: $0</p>
                     </div>
 
+                    {/* Trade Panel */}
                     <div className="border border-gray-500 p-3">
-                        Trade Panel
+                        <h2 className="text-sm text-gray-400 mb-2">Trade Panel</h2>
+
+                        <input
+                            type="number"
+                            placeholder="Quantity"
+                            className="w-full mb-2 p-1 bg-transparent border border-gray-600"
+                        />
+
+                        <div className="flex gap-2">
+                            <button className="flex-1 border border-green-500 text-green-500 py-1">
+                                BUY
+                            </button>
+                            <button className="flex-1 border border-red-500 text-red-500 py-1">
+                                SELL
+                            </button>
+                        </div>
                     </div>
 
                 </div>
 
                 {/* Trade history */}
                 <div className="col-span-4 border border-gray-500 p-3">
-                    Trade History
+                    <h2 className="text-sm text-gray-400 mb-2">Trade History</h2>
+
+                    <table className="w-full text-sm">
+                        <thead>
+                            <tr className="border-b border-gray-600 text-left">
+                                <th>Type</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>P&amp;L</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colSpan="6" className="text-center text-gray-500 py-3">
+                                    No trades yet
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
             </div>
