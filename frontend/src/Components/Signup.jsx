@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-    const [error, setError] = useState({});
     const navigate = useNavigate();
     const { handleSignUpWithEmailAndPassword } = useContext(AuthContext);
 
@@ -19,11 +18,10 @@ const Signup = () => {
                 if (user) {
                     console.log(user)
                     navigate('/');
-                    setError();
                 }
             })
             .catch((error) => {
-                setError(error.message);
+                alert(error.message);
             })
     }
     return (
