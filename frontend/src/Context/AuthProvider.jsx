@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const handleLogout = () => {
-        return signOut();
+        return signOut(auth);
     }
 
     // Auth Observer
