@@ -13,17 +13,17 @@ const Signup = () => {
         const name = form.username.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({ name, email, password })
-        handleSignUpWithEmailAndPassword(email, password)
-            .then((user) => {
-                if (user) {
-                    const res = api.post('/api/auth/signup', { name, email })
-                    navigate('/');
-                }
-            })
-            .catch((error) => {
-                alert(error.message);
-            })
+        const credentials = { email, name };
+        try {
+            const user = await handleSignUpWithEmailAndPassword(email, password);
+
+            if (user) {
+                await api.post('/api/auth/signup', credentials);
+                navigate('/');
+            }
+        } catch (error) {
+            alert(error.message);
+        }
     }
     return (
         <div className="flex items-center justify-center min-h-[calc(100vh-60px)]">
