@@ -102,3 +102,16 @@ export const GetPortfolio = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 }
+
+export const TradeHistory = async (req, res) => {
+    try {
+        const trades = await TradeModel
+            .find({ userId: req.params.userId })
+            .sort({ createdAt: -1 });
+
+        res.json(trades);
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
