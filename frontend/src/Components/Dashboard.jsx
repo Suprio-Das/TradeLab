@@ -52,7 +52,8 @@ const Dashboard = () => {
 
                         <input
                             type="number"
-                            placeholder="Quantity"
+                            value={quantity}
+                            onChange={(e) => setQuantity(Number(e.target.value))}
                             className="w-full mb-2 p-2 bg-transparent border border-gray-600 outline-none"
                         />
 
