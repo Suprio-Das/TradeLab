@@ -27,7 +27,7 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 min-h-[90vh]">
 
                 {/* Chart */}
-                <div className="md:col-span-3 border border-gray-500 flex flex-col p-3 min-h-[300px]">
+                <div className="md:col-span-3 border border-gray-500 flex flex-col p-3 min-h-[400px]">
                     <h2 className="text-sm text-gray-400 mb-2">Chart</h2>
                     <div className="flex-1 flex items-center justify-center text-gray-500">
                         <Chart />
