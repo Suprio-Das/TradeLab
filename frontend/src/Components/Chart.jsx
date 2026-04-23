@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { CandlestickSeries, createChart } from 'lightweight-charts';
-import { generateInitialData } from '../Utils/dataGenerator';
+import { createChart, CandlestickSeries } from 'lightweight-charts';
+import { generateInitialData, generateNextCandle } from '../utils/dataGenerator';
 
 const Chart = ({ setCurrentPrice }) => {
     const chartRef = useRef();
@@ -33,6 +33,29 @@ const Chart = ({ setCurrentPrice }) => {
         if (setCurrentPrice) {
             setCurrentPrice(lastCandle.close);
         }
+
+        let time = initialData.length;
+
+        // updates
+        const interval = setInterval(() => {
+            const newCandle = generateNextCandle(lastCandle, time);
+
+            candleSeries.update(newCandle);
+
+            lastCandle = newCandle;
+            time++;
+
+            // send price to dashboard
+            if (setCurrentPrice) {
+                setCurrentPrice(newCandle.close);
+            }
+
+        }, 1000);
+
+        return () => {
+            clearInterval(interval);
+            chart.remove();
+        };
 
     }, [setCurrentPrice]);
 
