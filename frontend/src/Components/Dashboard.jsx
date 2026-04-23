@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         fetchTrades();
-    }, []);
+    }, [user]);
 
     if (loading) {
         return (
@@ -147,7 +147,7 @@ const Dashboard = () => {
                     <table className="w-full text-sm min-w-[600px]">
                         <thead>
                             <tr className="border-b border-gray-600 text-left">
-                                <th>Type</th>
+                                {/* <th>Type</th> */}
                                 <th>Price</th>
                                 <th>Qty</th>
                                 <th>Total</th>
@@ -156,11 +156,26 @@ const Dashboard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td colSpan="6" className="text-center text-gray-500 py-3">
-                                    No trades yet
-                                </td>
-                            </tr>
+                            {trades.length === 0 ? (
+                                <tr>
+                                    <td colSpan="6" className="text-center text-gray-500 py-3">
+                                        No trades yet
+                                    </td>
+                                </tr>
+                            ) : (
+                                trades.map((trade) => (
+                                    <tr key={trade._id} className="border-b border-gray-700">
+                                        {/* <td>BUY/SELL</td> */}
+                                        <td>{trade.entryPrice.toFixed(2)}</td>
+                                        <td>{trade.quantity}</td>
+                                        <td>{trade.total.toFixed(2)}</td>
+                                        <td className={trade.profit >= 0 ? "text-green-400" : "text-red-400"}>
+                                            {trade.profit.toFixed(2)}
+                                        </td>
+                                        <td>{new Date(trade.createdAt).toLocaleTimeString()}</td>
+                                    </tr>
+                                ))
+                            )}
                         </tbody>
                     </table>
                 </div>
