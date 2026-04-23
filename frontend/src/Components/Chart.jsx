@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { CandlestickSeries, createChart } from 'lightweight-charts';
+import { generateInitialData } from '../Utils/dataGenerator';
 
 const Chart = () => {
     const chartRef = useRef();
@@ -22,6 +23,10 @@ const Chart = () => {
 
         // CandleStick Series
         const candleSeries = chart.addSeries(CandlestickSeries);
+
+        // Generate initial data
+        const initialData = generateInitialData(50);
+        candleSeries.setData(initialData);
 
     }, []);
 
