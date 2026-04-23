@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { createChart } from 'lightweight-charts';
+import { CandlestickSeries, createChart } from 'lightweight-charts';
 
 const Chart = () => {
     const chartRef = useRef();
@@ -19,6 +19,9 @@ const Chart = () => {
                 horzLines: { color: '#1F2937' },
             },
         });
+
+        // CandleStick Series
+        const candleSeries = chart.addSeries(CandlestickSeries);
 
     }, []);
 
