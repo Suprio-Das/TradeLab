@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { CandlestickSeries, createChart } from 'lightweight-charts';
 import { generateInitialData } from '../Utils/dataGenerator';
 
-const Chart = () => {
+const Chart = ({ setCurrentPrice }) => {
     const chartRef = useRef();
 
     useEffect(() => {
@@ -28,7 +28,13 @@ const Chart = () => {
         const initialData = generateInitialData(50);
         candleSeries.setData(initialData);
 
-    }, []);
+        // Set Initial Data to dashboard
+        let lastCandle = initialData[initialData.length - 1];
+        if (setCurrentPrice) {
+            setCurrentPrice(lastCandle.close);
+        }
+
+    }, [setCurrentPrice]);
 
     return (
         <div ref={chartRef} className="w-full h-full" />
