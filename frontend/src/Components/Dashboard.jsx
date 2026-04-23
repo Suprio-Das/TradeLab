@@ -22,6 +22,8 @@ const Dashboard = () => {
         return null;
     }
 
+    console.log(user)
+
     return (
         <div className="min-h-screen bg-gray-900 text-white p-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 min-h-[90vh]">
