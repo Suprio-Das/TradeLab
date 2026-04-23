@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Chart = () => {
+    const chartRef = useRef();
+
     return (
-        <div className="w-full h-full">
-            Chart will render here
-        </div>
+        <div ref={chartRef} className="w-full h-full" />
     );
 };
 
