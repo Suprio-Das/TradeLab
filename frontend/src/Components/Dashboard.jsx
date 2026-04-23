@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Chart from './Chart';
 
 const Dashboard = () => {
     const { user, loading } = useContext(AuthContext);
@@ -29,7 +30,7 @@ const Dashboard = () => {
                 <div className="md:col-span-3 border border-gray-500 flex flex-col p-3 min-h-[300px]">
                     <h2 className="text-sm text-gray-400 mb-2">Chart</h2>
                     <div className="flex-1 flex items-center justify-center text-gray-500">
-                        Candlestick Chart Area
+                        <Chart />
                     </div>
                 </div>
 
