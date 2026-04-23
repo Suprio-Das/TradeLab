@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
@@ -6,9 +6,23 @@ import api from '../Services/api';
 
 const Dashboard = () => {
     const [currentPrice, setCurrentPrice] = useState(0);
+    const [trades, setTrades] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const fetchTrades = async () => {
+        try {
+            const res = await api.get(`/api/trades/history/${user.uid}`);
+            setTrades(res.data);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(() => {
+        fetchTrades();
+    }, []);
 
     if (loading) {
         return (
