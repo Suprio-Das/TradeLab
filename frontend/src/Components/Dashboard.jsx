@@ -56,8 +56,21 @@ const Dashboard = () => {
     };
 
     const handleSell = async () => {
+        if (!currentPrice) {
+            alert("Price not ready yet");
+            return;
+        }
+
         try {
-            console.log("Handle Sell")
+            const res = await api.post('/api/trades/sell', {
+                userId: user.uid,
+                price: currentPrice,
+            });
+
+            const data = res.data;
+
+            alert(`Sell successful! Profit: ${data.profit.toFixed(2)}`);
+
         } catch (err) {
             if (err.response) {
                 alert(err.response.data.message);
@@ -65,7 +78,7 @@ const Dashboard = () => {
                 alert("Something went wrong");
             }
         }
-    }
+    };
 
     return (
         <div className="min-h-screen bg-gray-900 text-white p-4">
