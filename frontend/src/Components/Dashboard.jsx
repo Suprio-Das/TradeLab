@@ -85,6 +85,8 @@ const Dashboard = () => {
 
             alert(`Sell successful! Profit: ${data.profit.toFixed(2)}`);
 
+            fetchTrades();
+
         } catch (err) {
             if (err.response) {
                 alert(err.response.data.message);
