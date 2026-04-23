@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import api from '../Services/api';
 
 const Signup = () => {
     const navigate = useNavigate();
     const { handleSignUpWithEmailAndPassword } = useContext(AuthContext);
 
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.username.value;
@@ -16,7 +17,7 @@ const Signup = () => {
         handleSignUpWithEmailAndPassword(email, password)
             .then((user) => {
                 if (user) {
-                    console.log(user)
+                    const res = api.post('/api/auth/signup', { name, email })
                     navigate('/');
                 }
             })
