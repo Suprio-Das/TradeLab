@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
+import api from '../Services/api';
 
 const Dashboard = () => {
     const [currentPrice, setCurrentPrice] = useState(0);
@@ -25,7 +26,33 @@ const Dashboard = () => {
     }
 
     const handleBuy = async () => {
-        console.log("Buy function")
+        if (!currentPrice) {
+            alert("Price not ready yet");
+            return;
+        }
+
+        if (!quantity || quantity <= 0) {
+            alert("Enter valid quantity");
+            return;
+        }
+
+        try {
+            const res = await api.post('/api/trades/buy', {
+                userId: user.uid,
+                price: currentPrice,
+                quantity,
+            });
+
+
+            alert("Buy successful!");
+
+        } catch (err) {
+            if (err.response) {
+                alert(err.response.data.message);
+            } else {
+                alert("Something went wrong");
+            }
+        }
     };
 
     return (
