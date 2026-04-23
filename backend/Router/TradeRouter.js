@@ -1,5 +1,5 @@
 import express from 'express'
-import { BuyTrade } from '../Controllers/TradeController';
+import { BuyTrade } from '../Controllers/TradeController.js';
 
 const TradeRoutes = express.Router();
 

@@ -13,11 +13,13 @@ const Signup = () => {
         const name = form.username.value;
         const email = form.email.value;
         const password = form.password.value;
-        const credentials = { email, name };
+        const credentials = { name, email };
         try {
             const user = await handleSignUpWithEmailAndPassword(email, password);
-
+            credentials.uid = user.user.uid;
             if (user) {
+                const userId = user.user.uid;
+                console.log(userId)
                 await api.post('/api/auth/signup', credentials);
                 navigate('/');
             }
