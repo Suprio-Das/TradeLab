@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import ConnectDB from './Utils/DB.js';
 import AuthRoutes from './Router/AuthRouter.js';
+import TradeRoutes from './Router/TradeRouter.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 
 // ====================== App Routes =========================
 app.use('/api/auth', AuthRoutes);
+app.use('/api/trades', TradeRoutes);
 
 const PORT = process.env.PORT || 3000;
 
