@@ -45,7 +45,33 @@ export const BuyTrade = async (req, res) => {
 
 export const SellTrade = async (req, res) => {
     try {
-        console.log("Sell Trade.")
+        const { userId, price } = req.body;
+
+        const user = await UserModel.findOne({ userId: userId });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        if (!user.position || !user.position.entryPrice) {
+            return res.status(400).json({ message: "No active position" });
+        }
+
+        const { entryPrice, quantity } = user.position;
+
+        const profit = (price - entryPrice) * quantity;
+
+        user.balance += profit;
+
+        user.position = null;
+
+        await user.save();
+
+        res.json({
+            message: "Sell successful",
+            profit,
+            balance: user.balance
+        });
     } catch (error) {
         res.status(500).json({ error: err.message });
     }
