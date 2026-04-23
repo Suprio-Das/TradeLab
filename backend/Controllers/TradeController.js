@@ -1,3 +1,4 @@
+import TradeModel from "../Models/Trade.js";
 import UserModel from "../Models/Users.js";
 
 export const BuyTrade = async (req, res) => {
@@ -49,20 +50,25 @@ export const SellTrade = async (req, res) => {
 
         const user = await UserModel.findOne({ userId: userId });
 
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
-        }
-
-        if (!user.position || !user.position.entryPrice) {
+        if (!user || !user.position) {
             return res.status(400).json({ message: "No active position" });
         }
 
         const { entryPrice, quantity } = user.position;
 
         const profit = (price - entryPrice) * quantity;
+        const total = entryPrice * quantity;
+
+        await TradeModel.create({
+            userId,
+            entryPrice,
+            exitPrice: price,
+            quantity,
+            total,
+            profit,
+        });
 
         user.balance += profit;
-
         user.position = null;
 
         await user.save();
@@ -70,9 +76,9 @@ export const SellTrade = async (req, res) => {
         res.json({
             message: "Sell successful",
             profit,
-            balance: user.balance
         });
-    } catch (error) {
+
+    } catch (err) {
         res.status(500).json({ error: err.message });
     }
 }
