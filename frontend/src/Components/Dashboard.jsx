@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
 
 const Dashboard = () => {
+    const [currentPrice, setCurrentPrice] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Dashboard = () => {
                 <div className="md:col-span-3 border border-gray-500 flex flex-col p-3 min-h-[400px]">
                     <h2 className="text-sm text-gray-400 mb-2">Chart</h2>
                     <div className="flex-1 flex items-center justify-center text-gray-500">
-                        <Chart />
+                        <Chart setCurrentPrice={setCurrentPrice} />
                     </div>
                 </div>
 
