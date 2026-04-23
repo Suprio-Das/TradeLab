@@ -43,6 +43,14 @@ export const BuyTrade = async (req, res) => {
     }
 }
 
+export const SellTrade = async (req, res) => {
+    try {
+        console.log("Sell Trade.")
+    } catch (error) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
 export const GetPortfolio = async (req, res) => {
     try {
         const { userId } = req.body;
