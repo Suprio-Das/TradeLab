@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AuthContext from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Chart from './Chart';
 
 const Dashboard = () => {
+    const [quantity, setQuantity] = useState(1);
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
