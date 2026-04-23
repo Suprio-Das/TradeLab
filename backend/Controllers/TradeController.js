@@ -48,7 +48,16 @@ export const GetPortfolio = async (req, res) => {
         const { userId } = req.body;
 
         const user = await UserModel.findOne({ userId: userId });
-        console.log(user);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
+        }
+
+        const portfolio = {
+            balance: user.balance,
+            quantity: user.position.quantity
+        }
+
+        return res.status(200).json({ success: true, portfolio })
     } catch (error) {
         res.status(500).json({ error: err.message });
     }
