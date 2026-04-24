@@ -87,18 +87,20 @@ export const GetPortfolio = async (req, res) => {
     try {
         const user = await UserModel.findOne({ userId: req.params.userId });
         const trade = await TradeModel
-            .findOne({ userId: req.params.userId })
+            .find({ userId: req.params.userId })
             .sort({ createdAt: -1 });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
 
+        const totalProfit = trade.reduce((sum, t) => sum + t.profit, 0);
+
         const portfolio = {
             balance: user.balance || 0,
             quantity: user.position?.quantity || 0,
-            profit: trade?.profit || 0,
-            entryPrice: trade?.entryPrice || 0
+            profit: totalProfit,
+            entryPrice: user.position?.entryPrice
         };
 
         return res.status(200).json({ success: true, portfolio });
