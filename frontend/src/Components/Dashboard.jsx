@@ -81,6 +81,7 @@ const Dashboard = () => {
 
 
             alert("Buy successful!");
+            fetchPortfolio();
 
         } catch (err) {
             if (err.response) {
@@ -108,6 +109,7 @@ const Dashboard = () => {
             alert(`Sell successful! Profit: ${data.profit.toFixed(2)}`);
 
             fetchTrades();
+            fetchPortfolio();
 
         } catch (err) {
             if (err.response) {
@@ -136,9 +138,11 @@ const Dashboard = () => {
                     {/* Portfolio */}
                     <div className="border border-gray-500 p-3">
                         <h2 className="text-sm text-gray-400 mb-2">Portfolio</h2>
-                        <p>Balance: $0</p>
-                        <p>Position: 0</p>
-                        <p>P&amp;L: $0</p>
+                        <p>Balance: ${portfolio.portfolio?.balance?.toFixed(2)}</p>
+                        <p>Position: {portfolio?.portfolio?.quantity}</p>
+                        <p>
+                            P&amp;L: <span className={`${portfolio?.portfolio?.profit > 0 ? 'text-green-500' : 'text-red-500'}`}>${portfolio?.portfolio?.profit?.toFixed(2)}</span>
+                        </p>
                     </div>
 
                     {/* Trade Panel */}
