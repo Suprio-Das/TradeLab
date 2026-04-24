@@ -85,21 +85,22 @@ export const SellTrade = async (req, res) => {
 
 export const GetPortfolio = async (req, res) => {
     try {
-        const { userId } = req.body;
 
-        const user = await UserModel.findOne({ userId: userId });
-        if (!user) {
-            return res.status(404).json({ message: "User not found" })
+        const user = await UserModel.findOne({ userId: req.params.userId });
+        const trade = await TradeModel.findOne({ userId: req.params.userId });
+        if (!trade || !user) {
+            return res.status(404).json({ message: "User or Trade not found" })
         }
 
         const portfolio = {
             balance: user.balance,
-            quantity: user.position.quantity
+            quantity: trade.quantity,
+            profit: trade.profit
         }
 
         return res.status(200).json({ success: true, portfolio })
     } catch (error) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: error.message });
     }
 }
 

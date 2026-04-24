@@ -7,9 +7,12 @@ import api from '../Services/api';
 const Dashboard = () => {
     const [currentPrice, setCurrentPrice] = useState(0);
     const [trades, setTrades] = useState([]);
+    const [portfolio, setPortfolio] = useState([])
     const [quantity, setQuantity] = useState(1);
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const userId = user?.uid;
 
     const fetchTrades = async () => {
         try {
@@ -20,9 +23,28 @@ const Dashboard = () => {
         }
     };
 
+    const fetchPortfolio = async () => {
+        try {
+            const res = await api.get(`/api/trades/portfolio/${user.uid}`);
+            setPortfolio(res.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
-        fetchTrades();
+        if (user?.uid) {
+            fetchTrades();
+        }
     }, [user]);
+
+    useEffect(() => {
+        if (user?.uid) {
+            fetchPortfolio();
+        }
+    }, [user]);
+
+    console.log(portfolio)
 
     if (loading) {
         return (
