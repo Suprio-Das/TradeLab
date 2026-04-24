@@ -87,7 +87,7 @@ export const GetPortfolio = async (req, res) => {
     try {
 
         const user = await UserModel.findOne({ userId: req.params.userId });
-        const trade = await TradeModel.findOne({ userId: req.params.userId });
+        const trade = await TradeModel.findOne({ userId: req.params.userId }).sort({ createdAt: -1 });
         if (!trade || !user) {
             return res.status(404).json({ message: "User or Trade not found" })
         }
