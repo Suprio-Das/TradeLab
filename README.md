@@ -1,6 +1,6 @@
 # TradeLab
 
-![TradeLab Logo](/favicon.svg)
+![TradeLab Logo](/frontend/public/favicon.svg)
 
 A full-stack trading analysis platform designed to help traders visualize, analyze, and manage their trading activities. TradeLab combines a modern React frontend with a robust Node.js/Express backend to provide a seamless trading experience.
 
