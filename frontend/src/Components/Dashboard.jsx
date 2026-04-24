@@ -12,8 +12,6 @@ const Dashboard = () => {
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    console.log(user)
-
     const fetchTrades = async () => {
         try {
             const res = await api.get(`/api/trades/history/${user?.uid}`);
@@ -44,7 +42,6 @@ const Dashboard = () => {
         }
     }, [user]);
 
-    console.log(portfolio)
 
     if (loading) {
         return (
