@@ -143,6 +143,9 @@ const Dashboard = () => {
                         <p>
                             P&amp;L: <span className={`${portfolio?.portfolio?.profit > 0 ? 'text-green-500' : 'text-red-500'}`}>${portfolio?.portfolio?.profit?.toFixed(2) || 0}</span>
                         </p>
+                        {portfolio?.portfolio?.quantity > 0 && portfolio?.portfolio?.entryPrice && (
+                            <p>Buying Price: {portfolio.portfolio.entryPrice.toFixed(2)}</p>
+                        )}
                     </div>
 
                     {/* Trade Panel */}

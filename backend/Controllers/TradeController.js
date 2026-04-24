@@ -97,7 +97,8 @@ export const GetPortfolio = async (req, res) => {
         const portfolio = {
             balance: user.balance || 0,
             quantity: user.position?.quantity || 0,
-            profit: trade?.profit || 0
+            profit: trade?.profit || 0,
+            entryPrice: trade?.entryPrice || 0
         };
 
         return res.status(200).json({ success: true, portfolio });
