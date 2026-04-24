@@ -94,7 +94,7 @@ export const GetPortfolio = async (req, res) => {
 
         const portfolio = {
             balance: user.balance,
-            quantity: trade.quantity,
+            quantity: user.position.quantity || 0,
             profit: trade.profit
         }
 
