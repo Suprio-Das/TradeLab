@@ -12,12 +12,12 @@ const Dashboard = () => {
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const userId = user?.uid;
+    console.log(user)
 
     const fetchTrades = async () => {
         try {
-            const res = await api.get(`/api/trades/history/${user.uid}`);
-            setTrades(res.data);
+            const res = await api.get(`/api/trades/history/${user?.uid}`);
+            setTrades(res?.data);
         } catch (err) {
             console.error(err);
         }
@@ -25,8 +25,8 @@ const Dashboard = () => {
 
     const fetchPortfolio = async () => {
         try {
-            const res = await api.get(`/api/trades/portfolio/${user.uid}`);
-            setPortfolio(res.data);
+            const res = await api.get(`/api/trades/portfolio/${user?.uid}`);
+            setPortfolio(res?.data);
         } catch (error) {
             console.log(error)
         }
@@ -138,10 +138,10 @@ const Dashboard = () => {
                     {/* Portfolio */}
                     <div className="border border-gray-500 p-3">
                         <h2 className="text-sm text-gray-400 mb-2">Portfolio</h2>
-                        <p>Balance: ${portfolio.portfolio?.balance?.toFixed(2)}</p>
+                        <p>Balance: ${portfolio?.portfolio?.balance?.toFixed(2)}</p>
                         <p>Position: {portfolio?.portfolio?.quantity}</p>
                         <p>
-                            P&amp;L: <span className={`${portfolio?.portfolio?.profit > 0 ? 'text-green-500' : 'text-red-500'}`}>${portfolio?.portfolio?.profit?.toFixed(2)}</span>
+                            P&amp;L: <span className={`${portfolio?.portfolio?.profit > 0 ? 'text-green-500' : 'text-red-500'}`}>${portfolio?.portfolio?.profit?.toFixed(2) || 0}</span>
                         </p>
                     </div>
 
