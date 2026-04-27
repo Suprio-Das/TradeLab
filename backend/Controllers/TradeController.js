@@ -56,19 +56,20 @@ export const SellTrade = async (req, res) => {
 
         const { entryPrice, quantity } = user.position;
 
-        const profit = (price - entryPrice) * quantity;
-        const total = entryPrice * quantity;
+        const cost = entryPrice * quantity;
+        const sellValue = price * quantity;
+        const profit = sellValue - cost;
 
         await TradeModel.create({
             userId,
             entryPrice,
             exitPrice: price,
             quantity,
-            total,
+            total: cost,
             profit,
         });
 
-        user.balance += profit;
+        user.balance += sellValue;
         user.position = null;
 
         await user.save();
